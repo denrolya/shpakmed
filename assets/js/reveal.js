@@ -1,3 +1,5 @@
+import '../css/reveal.scss';
+
 import 'jquery/dist/jquery';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import 'jquery-sticky/jquery.sticky';

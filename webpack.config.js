@@ -1,25 +1,33 @@
 var Encore = require('@symfony/webpack-encore');
 
 Encore
-    // the project directory where compiled assets will be stored
+// the project directory where all compiled assets will be stored
     .setOutputPath('public/build/')
+
     // the public path used by the web server to access the previous directory
     .setPublicPath('/build')
-    .cleanupOutputBeforeBuild()
+
+    // will create public/build/app.js and public/build/app.css
+    .addEntry('reveal', './assets/js/reveal.js')
+    // .addStyleEntry('reveal', './assets/css/reveal.scss')
+
+    // allow legacy applications to use $/jQuery as a global variable
+    .autoProvidejQuery()
+
+    // enable source maps during development
     .enableSourceMaps(!Encore.isProduction())
+
+    // empty the outputPath dir before each build
+    .cleanupOutputBeforeBuild()
+
+    // show OS notifications when builds finish/fail
+    .enableBuildNotifications()
+
+    // create hashed filenames (e.g. app.abc123.css)
     // .enableVersioning(Encore.isProduction())
 
-    // uncomment to define the assets of the project
-    .addEntry('js/main', './assets/js/main.js')
-    .addEntry('js/reveal', './assets/js/reveal.js')
-    .addStyleEntry('css/reveal', './assets/css/reveal.scss')
-    .addStyleEntry('css/main', './assets/css/main.scss')
-
-    // uncomment if you use Sass/SCSS files
+    // allow sass/scss files to be processed
     .enableSassLoader()
-
-    // uncomment for legacy applications that require $/jQuery as a global variable
-    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

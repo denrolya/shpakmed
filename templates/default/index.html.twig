@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/reveal.css') }}"/>
+{% endblock stylesheets %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="contactform/contactform.js"></script>#}
+    <script type="text/javascript" src="{{ asset('build/js/reveal.js') }}"></script>
+{% endblock javascripts %}
+
+{% block body %}
+    <main id="main">
+        {% include 'default/index/sections/about.html.twig' %}
+        {% include 'default/index/sections/services.html.twig' %}
+        {% include 'default/index/sections/products.html.twig' %}
+        {% include 'default/index/sections/call-to-action.html.twig' %}
+        {% include 'default/index/sections/contact.html.twig' %}
+    </main>
+{% endblock body %}

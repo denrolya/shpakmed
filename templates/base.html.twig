@@ -13,6 +13,7 @@
 
         {% block stylesheets %}
             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('build/reveal.css') }}"/>
         {% endblock stylesheets %}
     </head>
 
@@ -62,6 +63,8 @@
 
         {% block javascripts %}
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+            {#<script src="contactform/contactform.js"></script>#}
+            <script type="text/javascript" src="{{ asset('build/reveal.js') }}"></script>
         {% endblock javascripts %}
 
     </body>

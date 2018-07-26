@@ -2,17 +2,6 @@
 
 {% block title %}Home{% endblock title %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('build/reveal.css') }}"/>
-{% endblock stylesheets %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {#<script src="contactform/contactform.js"></script>#}
-    <script type="text/javascript" src="{{ asset('build/reveal.js') }}"></script>
-{% endblock javascripts %}
-
 {% block body %}
     <main id="main">
         {% include 'app/index/sections/about.html.twig' %}

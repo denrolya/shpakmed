@@ -17,12 +17,12 @@ class ProductType extends AbstractType
             ->add('category')
             ->add('tags')
             ->add('translations', TranslationsType::class, [
-                'locales' => ['en', 'fr', 'es', 'de'],
                 'fields' => [
                     'description' => [
                         'field_type' => CKEditorType::class,
-                    ]
-                ]
+                    ],
+                ],
+                'excluded_fields' => ['slug']
             ])
         ;
     }

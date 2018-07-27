@@ -3,6 +3,7 @@ import '../css/reveal.scss';
 import 'jquery/dist/jquery';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import 'jquery-sticky/jquery.sticky';
+import 'jquery.easing/jquery.easing';
 import 'superfish/dist/js/hoverIntent';
 import 'superfish/dist/js/superfish';
 import 'magnific-popup/dist/jquery.magnific-popup';

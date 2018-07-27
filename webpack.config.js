@@ -9,6 +9,7 @@ Encore
 
     // will create public/build/reveal.js and public/build/reveal.css
     .addEntry('reveal', './assets/js/reveal.js')
+    .addStyleEntry('login', './assets/css/login.scss')
 
     // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()

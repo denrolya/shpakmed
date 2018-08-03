@@ -129,25 +129,4 @@ jQuery(document).ready(function ($) {
             }
         }
     });
-
-    //Google Map
-    const get_latitude = $('#google-map').data('latitude');
-    const get_longitude = $('#google-map').data('longitude');
-
-    function initialize_google_map() {
-        const myLatlng = new google.maps.LatLng(get_latitude, get_longitude);
-        const mapOptions = {
-            zoom:        14,
-            scrollwheel: false,
-            center:      myLatlng
-        };
-        const map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
-        const marker = new google.maps.Marker({
-            position: myLatlng,
-            map:      map
-        });
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize_google_map);
-
 });

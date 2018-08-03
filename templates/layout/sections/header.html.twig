@@ -16,10 +16,10 @@
                     </ul>
                 </li>
                 <li class="menu-has-children">
-                    <a href="">{{ app.request.locale }}</a>
+                    <a href="" class="text-capitalize">{{ app.request.locale }}</a>
                     <ul>
                         {% for locale in locales %}
-                            <li><a href="{{ path('index', { '_locale' : locale }) }}">{{ locale }}</a></li>
+                            <li class="text-capitalize"><a href="{{ path('index', { '_locale' : locale }) }}">{{ locale }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>

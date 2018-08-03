@@ -39,7 +39,7 @@ jQuery(document).ready(function ($) {
 
     // Mobile Navigation
     if ($('#nav-menu-container').length) {
-        const $mobile_nav = $('#nav-menu-container').clone().prop({
+        var $mobile_nav = $('#nav-menu-container').clone().prop({
             id: 'mobile-nav'
         });
         $mobile_nav.find('> ul').attr({
@@ -64,7 +64,7 @@ jQuery(document).ready(function ($) {
         });
 
         $(document).click(function (e) {
-            const container = $("#mobile-nav, #mobile-nav-toggle");
+            var container = $("#mobile-nav, #mobile-nav-toggle");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 if ($('body').hasClass('mobile-nav-active')) {
                     $('body').removeClass('mobile-nav-active');
@@ -81,9 +81,9 @@ jQuery(document).ready(function ($) {
     $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function () {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname ==
             this.hostname) {
-            const target = $(this.hash);
+            var target = $(this.hash);
             if (target.length) {
-                let top_space = 0;
+                var top_space = 0;
 
                 if ($('#header').length) {
                     top_space = $('#header').outerHeight();

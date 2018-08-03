@@ -1,0 +1,26 @@
+<header id="header">
+    <div class="container">
+
+        <div id="logo" class="pull-left">
+            <h1><a href="#body" class="scrollto">Shpak<span>Med</span></a></h1>
+        </div>
+
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="menu-active"><a href="#body">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="menu-has-children">
+                    <a href="">{{ app.request.locale }}</a>
+                    <ul>
+                        {% for locale in locales %}
+                            <li><a href="{{ path('index', { '_locale' : locale }) }}">{{ locale }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

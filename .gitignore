@@ -25,6 +25,7 @@ yarn-error.log
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 
-###> Uploads ###
+###> Other ###
 /public/uploads/*
-###< Uploads ###
+/deploy.php
+###< Other ###

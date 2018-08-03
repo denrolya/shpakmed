@@ -20,43 +20,9 @@
 
     <body id="body">
 
-        <section id="topbar" class="d-none d-lg-block">
-            <div class="container clearfix">
-                <div class="contact-info float-left">
-                    <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@shpakmed.com</a>
-                    <i class="fa fa-phone"></i> +1 5589 55488 55
-                </div>
-                <div class="social-links float-right">
-                </div>
-            </div>
-        </section>
+        {% include 'layout/sections/topbar.html.twig' %}
 
-        <header id="header">
-            <div class="container">
-
-                <div id="logo" class="pull-left">
-                    <h1><a href="#body" class="scrollto">Shpak<span>Med</span></a></h1>
-                </div>
-
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-active"><a href="#body">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li class="menu-has-children">
-                            <a href="">{{ app.request.locale }}</a>
-                            <ul>
-                                {% for locale in locales %}
-                                    <li><a href="{{ path('index', { '_locale' : locale }) }}">{{ locale }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        {% include 'layout/sections/header.html.twig' %}
 
         {% block body %}{% endblock body %}
 

@@ -8,6 +8,7 @@ Encore
     .setPublicPath('/build')
 
     // will create public/build/reveal.js and public/build/reveal.css
+    .addEntry('cookieconsent', './assets/js/cookieconsent.js')
     .addEntry('reveal', './assets/js/reveal.js')
     .addStyleEntry('login', './assets/css/login.scss')
 

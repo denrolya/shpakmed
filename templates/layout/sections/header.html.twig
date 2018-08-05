@@ -19,18 +19,18 @@
                         {% endfor %}
                     </ul>
                 </li>
-                {#<li class="menu-has-children">#}
-                    {#<a href="#" class="text-capitalize">{{ 'Language' | trans }}</a>#}
-                    {#<ul>#}
-                        {#{% for locale in locales if locale != app.request.locale %}#}
-                            {#<li class="text-capitalize">#}
-                                {#<a href="{{ path(route, params|merge({ _locale: locale })) }}">#}
-                                    {#{{ locale | upper | trans }}#}
-                                {#</a>#}
-                            {#</li>#}
-                        {#{% endfor %}#}
-                    {#</ul>#}
-                {#</li>#}
+                <li class="menu-has-children">
+                    <a href="#" class="text-capitalize">{{ 'Language' | trans }}</a>
+                    <ul>
+                        {% for locale in locales if locale != app.request.locale %}
+                            <li class="text-capitalize">
+                                <a href="{{ path(route, params|merge({ _locale: locale })) }}">
+                                    {{ locale | upper | trans }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>

@@ -2,17 +2,68 @@
 
 {% block title %}List{% endblock title %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        section {
+            padding-top: 50px;
+        }
+
+        #products {
+            margin: 0 50px
+        }
+
+        .list-group-item.active {
+            background-color: #0c2e8a;
+            border-color: #0c2e8a;
+        }
+    </style>
+{% endblock stylesheets %}
+
 {% block body %}
-    <div class="jumbotron">
-        <h1 class="display-4">Products!</h1>
-        <div class="lead">
-            {% for product in products %}
-                <a href="{{ path('product_view', { id: product.id }) }}" class="list-group-item list-group-item-action">
-                    {{ product.translate(app.request.locale).name }}
-                </a>
-            {% endfor %}
+    <section id="products">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="list-group">
+                    <a href="{{ path('product_list') }}" class="list-group-item {{ (app.request.get('id') == null) ? 'active' : '' }}">
+                        {{ 'All Products' | trans }}
+                    </a>
+                    {% for category in categories %}
+                        <a href="{{ path('category_product_list', { id: category.id}) }}" class="list-group-item {{ (app.request.get('id') == category.id) ? 'active' : '' }} {{ (category.products.count == 0) ? 'disabled' : ''  }}">
+                            {{ category.translate(app.request.locale).name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="row">
+                    {% for  product in products %}
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div class="card h-100">
+                                <a href="{{ path('product_view', { id: product.id }) }}">
+                                    <img class="card-img-top" src="http://placehold.it/700x400" alt="">
+                                </a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="{{ path('product_view', { id: product.id }) }}">
+                                            {{ product.translate(app.request.locale).name }}
+                                        </a>
+                                    </h4>
+                                    <p class="card-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="{{ path('product_view', { id: product.id }) }}" class="btn btn-primary">
+                                        View
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
-        <hr class="my-4">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </div>
+    </section>
 {% endblock body %}

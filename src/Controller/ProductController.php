@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,47 +14,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ProductController extends Controller
 {
     /**
-     * @Route("/products", name="product_list")
+     * @Route("/categories/{id}/products", requirements={"categoryId" = "\d+"}, name="category_product_list")
      */
-    public function productList()
+    public function productsInCategoryList(Category $category, EntityManagerInterface $em)
     {
-        $products = $this
-            ->getDoctrine()
-            ->getRepository(Product::class)
-            ->findAll();
-
         return $this->render('app/product/list.html.twig', [
-            'products' => $products
+            'categories' => $em->getRepository(Category::class)->findAll(),
+            'activeCategory' => $category,
+            'products' => $category->getProducts()
         ]);
     }
 
     /**
-     * @Route("/products/new", name="product_create")
+     * @Route("/products", name="product_list")
      */
-    public function productCreate(Request $request)
+    public function productList(EntityManagerInterface $em)
     {
-        $product = new Product();
-
-        $form = $this->createForm(ProductType::class, $product);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->get('doctrine.orm.entity_manager');
-            die(var_dump($form->getData()));
-        }
-
-        return $this->render('app/product/new.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return $this->render('app/product/list.html.twig', [
+            'categories' => $em->getRepository(Category::class)->findAll(),
+            'products' => $em->getRepository(Product::class)->findAll()
+        ]);
     }
 
     /**
-     * @Route("/products/{id}", name="product_view")
+     * @Route("/products/{id}", requirements={"id" = "\d+"}, name="product_view")
      */
-    public function productView(Product $product)
+    public function productView(Product $product, EntityManagerInterface $em)
     {
+        $categories = $em->getRepository(Category::class)->findAll();
+
         return $this->render('app/product/view.html.twig', [
+            'categories' => $categories,
             'product' => $product
         ]);
     }

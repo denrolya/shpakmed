@@ -23,6 +23,8 @@ easy_admin:
             form:
                 fields:
                     - { type: 'group', css_class: 'col-sm-8', label: 'General information', icon: 'pencil' }
+                    - { property: category }
+                    - { type: divider }
                     -   property: translations
                         type: 'A2lix\TranslationFormBundle\Form\Type\TranslationsType'
                         type_options:
@@ -32,10 +34,6 @@ easy_admin:
                                     field_type: 'FOS\CKEditorBundle\Form\Type\CKEditorType'
                             excluded_fields: ['slug']
 
-                    - { type: 'group', css_class: 'col-sm-4', label: 'Grouping', icon: 'pencil' }
-                    - { property: category }
-                    - { type: divider }
-                    - { property: tagsText, type: text, label: 'Tags' }
 
                     - { type: 'group', css_class: 'col-sm-4', label: 'Attachments', icon: 'paperclip' }
                     - { property: images, type: collection, type_options: { entry_type: 'App\Form\ImageType', by_reference: false } }

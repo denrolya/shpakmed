@@ -5,9 +5,9 @@ easy_admin:
             label: 'Categories'
             list:
                 actions:
-                    - { name: 'show', label: '', icon: 'search' }
-                    - { name: 'edit', label: '', icon: 'edit' }
-                    - { name: 'delete', label: '', icon: 'trash' }
+                    - { name: 'show', icon: 'search', label: false, title: 'Show' }
+                    - { name: 'edit', icon: 'pencil', label: false, title: 'Edit' }
+                    - { name: 'delete', icon: 'remove', label: false, title: 'Delete' }
                 fields:
                     - 'id'
                     - { property: 'name', label: 'Label' }

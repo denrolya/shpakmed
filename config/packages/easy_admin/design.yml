@@ -7,9 +7,5 @@ easy_admin:
     show:
         title: '%%entity_label%% (#%%entity_id%%)'
     design:
-        brand_color: '#EAA83E'
         form_theme:   'vertical'
         color_scheme: 'dark'
-    assets:
-        css:
-            - '/bundles/user/css/admin4.css'

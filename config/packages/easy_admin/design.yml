@@ -10,3 +10,6 @@ easy_admin:
         brand_color: '#EAA83E'
         form_theme:   'vertical'
         color_scheme: 'dark'
+    assets:
+        css:
+            - '/bundles/user/css/admin4.css'

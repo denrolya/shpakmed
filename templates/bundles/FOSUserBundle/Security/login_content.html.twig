@@ -8,23 +8,30 @@
     <div class="wrapper">
         <form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
             <h3 class="form-signin-heading">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h3>
-            <hr class="colorgraph"><br>
+            <hr class="colorgraph">
+            <br>
 
             {% if csrf_token %}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
             {% endif %}
 
-            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required"
+            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"
+                   placeholder="Username"
+                   required="required"
                    autocomplete="username"/>
 
-            <input class="form-control" type="password" id="password" name="_password" required="required" autocomplete="current-password"/>
+            <input class="form-control" type="password" id="password" name="_password"
+                   placeholder="Password"
+                   required="required"
+                   autocomplete="current-password"/>
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="remember_me" name="_remember_me" value="on"/>
                 <label class="form-check-label" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
             </div>
 
-            <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"/>
+            <input class="btn btn-primary" type="submit" id="_submit" name="_submit"
+                   value="{{ 'security.login.submit'|trans }}"/>
         </form>
     </div>
 </div>

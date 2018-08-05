@@ -1,39 +1,81 @@
 <?php
 namespace Deployer;
 
-require 'recipe/symfony.php';
+require 'recipe/symfony4.php';
 
 // Project name
-set('application', 'my_project');
+set('application', 'shpakmed'); // Project name
+set('http_user', 'www-data');
+set('host_address', '178.128.195.103');
 
-// Project repository
-set('repository', 'https://github.com/denrolya/shpakmed.git');
+set('db', [
+    'local' => [
+        'name' => 'shpakmed',
+        'username' => '-USERNAME-',
+        'password' => '-PASSWORD-'
+    ],
+    'production' => [
+        'host' => get('host_address'),
+        'name' => 'shpakmed',
+        'username' => '-USERNAME-',
+        'password' => '-PASSWORD-'
+    ]
+]);
+set('local_project_folder', '/path/to/shpakmed'); // In order to use database:copy:to_local
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
 
-// Shared files/dirs between deploys
-add('shared_files', []);
-add('shared_dirs', []);
-
-// Writable dirs by web server
-add('writable_dirs', []);
-
-
 // Hosts
-
-host('project.com')
-    ->set('deploy_path', '~/{{application}}');
+host('production')
+    ->hostname(get('db')['production']['host'])
+    ->stage('production')
+    ->user('-USERNAME-')
+    ->configFile('~/.ssh/config')
+    ->identityFile('~/.ssh/id_rsa')
+    ->multiplexing(true)
+    ->set('repository', 'https://github.com/denrolya/shpakmed.git')
+    ->set('branch', 'develop')
+    ->set('clear_paths', [])
+    ->set('symfony_env', 'dev')
+    ->set('deploy_path', '/var/www/{{application}}')
+    ->set('writable_mode', 'acl')
+    ->set('composer_options', '{{composer_action}}')
+    ->set('shared_dirs', ['var/log', 'var/sessions', 'public/uploads'])
+    ->set('shared_files', ['.env'])
+    ->set('writable_dirs', ['var']);
 
 // Tasks
+task('deploy', [
+    'deploy:info',
+    'deploy:prepare',
+    'deploy:lock',
+    'deploy:release',
+    'deploy:update_code',
+    'deploy:shared',
+    'deploy:writable',
+    'deploy:vendors',
+    'deploy:cache:clear',
+    'deploy:cache:warmup',
+    'assets:install',
+    'assets:compile:dev',
+    'deploy:symlink',
+    'deploy:unlock',
+    'cleanup',
+])->desc('Deploy Application');
 
-task('build', function () {
-    run('cd {{release_path}} && build');
+task('assets:install', function () {
+    run('cd {{release_path}} && yarn install');
+});
+
+task('assets:compile:prod', function() {
+    run('cd {{release_path}} && yarn dev');
+});
+
+task('assets:compile:dev', function() {
+    run('cd {{release_path}} && yarn dev');
 });
 
 // [Optional] if deploy fails automatically unlock.
+after('deploy', 'success');
 after('deploy:failed', 'deploy:unlock');
-
-// Migrate database before symlink new release.
-
-before('deploy:symlink', 'database:migrate');

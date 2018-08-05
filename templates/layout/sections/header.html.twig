@@ -12,10 +12,16 @@
         <nav id="nav-menu-container">
             <ul class="nav-menu">
                 <li class="menu-has-children">
-                    <a href="">{{ 'Products' | trans }}</a>
+                    <a href="{{ path('product_list') }}">
+                        {{ 'Products' | trans }}
+                    </a>
                     <ul>
                         {% for category in categories %}
-                            <li><a href="#">{{ category.translate(app.request.locale).name }}</a></li>
+                            <li>
+                                <a href="{{ path('category_product_list', {id: category.id}) }}">
+                                    {{ category.translate(app.request.locale).name }}
+                                </a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </li>

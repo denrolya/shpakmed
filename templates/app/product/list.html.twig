@@ -60,6 +60,8 @@
                                 </div>
                             </div>
                         </div>
+                    {% else %}
+                        <h2>{{ 'Currently there are no products in this category' | trans }}</h2>
                     {% endfor %}
                 </div>
             </div>

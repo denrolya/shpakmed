@@ -3,39 +3,59 @@
 {% block title %}View {{ product.translate(app.request.locale).name }}{% endblock title %}
 
 {% block body %}
-    <!-- Page Content -->
     <div class="container mt-5">
+
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">{{ product.translate(app.request.locale).name }}
+            {#<small>Secondary Text</small>#}
+        </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-fluid" src="{{ vich_uploader_asset(product.images[0], 'imageFile') }}" alt="">
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="my-3">Product Description</h3>
+                <p>{{ product.translate(app.request.locale).description | raw }}</p>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <h3 class="my-4">Related Projects</h3>
 
         <div class="row">
 
-            <div class="col-lg-2">
-                <div class="list-group">
-                    <a href="{{ path('product_list') }}"
-                       class="list-group-item {{ (app.request.get('id') == null) ? 'active' : '' }}">
-                        {{ 'All Products' | trans }}
-                    </a>
-                    {% for category in categories %}
-                        <a href="{{ path('category_product_list', { id: category.id}) }}"
-                           class="list-group-item {{ (product.category.id == category.id) ? 'active' : '' }} {{ (category.products.count == 0) ? 'disabled' : '' }}">
-                            {{ category.translate(app.request.locale).name }}
-                        </a>
-                    {% endfor %}
-                </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
             </div>
 
-            <div class="col-lg-10">
-                <div class="card">
-                    <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            {{ product.translate(app.request.locale).name }}
-                        </h3>
-                        <p class="card-text">
-                            {{ product.translate(app.request.locale).description | raw }}
-                        </p>
-                    </div>
-                </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
             </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
         </div>
+        <!-- /.row -->
+
     </div>
 {% endblock body %}

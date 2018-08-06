@@ -22,29 +22,7 @@
             <div class="col-lg-10">
                 <div class="row">
                     {% for  product in products %}
-                        <div class="col-lg-4 col-md-6 mb-3">
-                            <div class="card h-100">
-                                <a href="{{ path('product_view', { id: product.id }) }}">
-                                    <img class="card-img-top" src="http://placehold.it/700x400?text={{ 'No Image' | trans | replace({' ': '+'}) }}" alt="">
-                                </a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="{{ path('product_view', { id: product.id }) }}">
-                                            {{ product.translate(app.request.locale).name }}
-                                        </a>
-                                    </h4>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                                        aspernatur!
-                                    </p>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="{{ path('product_view', { id: product.id }) }}" class="btn btn-primary">
-                                        View
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        {% include 'app/product/sections/product_list_item.html.twig' with {product: product} only %}
                     {% else %}
                         <h2>{{ 'Currently there are no products in this category' | trans }}</h2>
                     {% endfor %}

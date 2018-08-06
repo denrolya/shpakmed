@@ -12,10 +12,17 @@
         <div class="row">
             <div class="col-md-8">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for image in product.images %}
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index }}"
+                                class="{{ loop.first ? 'active' : '' }}"></li>
+                        {% endfor %}
+                    </ol>
                     <div class="carousel-inner">
                         {% for image in product.images %}
                             <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-                                <img class="d-block w-100" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="Product image {{ loop.index }}">
+                                <img class="d-block w-100" src="{{ vich_uploader_asset(image, 'imageFile') }}"
+                                     alt="Product image {{ loop.index }}">
                             </div>
                         {% endfor %}
                     </div>

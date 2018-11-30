@@ -6,9 +6,9 @@
 2. $: `yarn install`
 3. $: `bin/console ck:install`
     * *Install CKEditor assets*
-4. $: `bin/console assets:install --symlink`
+4. $: `bin/console assets:install --symlink --relative`
     * *Publish assets required for backend*
-5. $: `yarn run encore production`
+5. $: `yarn build`
     * *Compile frontend assets*
 6. $: *Configure database parameters in .env file*
 6. $: `bin/console d:d:c && bin/console d:s:c && bin/console d:f:l -n`
